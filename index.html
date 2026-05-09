@@ -20,8 +20,7 @@
     --fg: #0a0a0a;
     --muted: rgba(10, 10, 10, 0.55);
     --line: rgba(10, 10, 10, 0.1);
-    --accent: #c8202b; /* CultureCode red */
-    --accent-hover: #a81923;
+    --accent: #c8202b;
     --sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   }
 
@@ -58,19 +57,46 @@
     text-align: left;
   }
 
-  /* Logo — centered at top */
+  /* Logo with video mask */
   .logo-wrap {
     display: flex;
     justify-content: center;
     margin-top: 24px;
-    margin-bottom: 96px;
+    margin-bottom: 140px;
   }
 
-  .logo {
-    height: auto;
-    width: min(440px, 72vw);
-    display: block;
-    user-select: none;
+  /* The masked container — sized to logo dimensions */
+  .logo-mask {
+    position: relative;
+    width: min(340px, 60vw);
+    /* aspect ratio of the original logo image (1503 / 184 ≈ 8.17) */
+    aspect-ratio: 1503 / 184;
+    overflow: hidden;
+    /* PNG used as alpha mask: black silhouette of the wordmark */
+    -webkit-mask-image: url('logo.png');
+    mask-image: url('logo.png');
+    -webkit-mask-size: 100% 100%;
+    mask-size: 100% 100%;
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+  }
+
+  .logo-mask .bg-anim {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    /* Slight saturation/contrast boost so it reads strong inside the letters */
+    filter: saturate(1.15) contrast(1.05);
+  }
+
+  /* Fallback: if mask not supported, show plain red logo */
+  @supports not ((-webkit-mask-image: url('')) or (mask-image: url(''))) {
+    .logo-mask {
+      background: url('logo.png') center / contain no-repeat;
+    }
+    .logo-mask .bg-anim { display: none; }
   }
 
   /* Headline */
@@ -113,7 +139,6 @@
 
   .section p + p { margin-top: 1.1em; }
 
-  /* Divider — sound.xyz style thin rule */
   .divider {
     border: none;
     border-top: 1px solid var(--line);
@@ -128,7 +153,7 @@
     margin-bottom: 56px;
   }
 
-  /* Centered CTA button — red */
+  /* CTA */
   .cta-wrap {
     display: flex;
     justify-content: center;
@@ -152,7 +177,7 @@
   .cta:hover { background: #2a2a2a; transform: translateY(-1px); }
   .cta:active { transform: translateY(0); }
 
-  /* ─── FOOTER ──────────────────────────────────────── */
+  /* Footer */
   footer {
     display: flex;
     flex-direction: column;
@@ -175,7 +200,7 @@
 
   .copy { font-size: 10px; color: var(--muted); }
 
-  /* ─── REVEAL ─────────────────────────────────────── */
+  /* Reveal */
   .reveal {
     opacity: 0;
     transform: translateY(8px);
@@ -187,11 +212,11 @@
   .reveal.d4 { animation-delay: 0.46s; }
   @keyframes reveal { to { opacity: 1; transform: translateY(0); } }
 
-  /* ─── MOBILE ──────────────────────────────────────── */
+  /* Mobile */
   @media (max-width: 640px) {
     main { padding: 32px 22px 56px; }
-    .logo-wrap { margin-top: 16px; margin-bottom: 60px; }
-    .logo { width: min(320px, 78vw); }
+    .logo-wrap { margin-top: 16px; margin-bottom: 90px; }
+    .logo-mask { width: min(260px, 66vw); }
     h1.headline { margin-bottom: 18px; }
     .hero-body { font-size: 14px; margin-bottom: 48px; }
     .section { margin-bottom: 44px; }
@@ -204,6 +229,10 @@
 
   @media (prefers-reduced-motion: reduce) {
     .reveal { animation: none; opacity: 1; transform: none; }
+    .logo-mask .bg-anim { display: none; }
+    .logo-mask {
+      background: url('logo.png') center / contain no-repeat;
+    }
   }
 </style>
 </head>
@@ -212,7 +241,9 @@
 <main>
   <div class="page">
     <div class="logo-wrap reveal d1">
-      <img class="logo" src="logo.png" alt="culturecode" />
+      <div class="logo-mask" aria-label="culturecode" role="img">
+        <img class="bg-anim" src="bg.avif" alt="" />
+      </div>
     </div>
 
     <h1 class="headline reveal d2">For the Real Ones.</h1>
@@ -259,5 +290,9 @@
   <div class="copy reveal d4">©CultureCode.inc</div>
 </footer>
 
+<script>
+  // If bg.mp4 fails to load, the second <source> (Pixabay stock) takes over automatically.
+  // No JS needed for masking — pure CSS.
+</script>
 </body>
 </html>
