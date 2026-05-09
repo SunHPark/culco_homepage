@@ -3,24 +3,71 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-<title>CultureCode inc.</title>
-<meta name="description" content="A consumer entertainment company creating a new consumption experience for fandom culture." />
+<title>CultureCode inc. — 컬처코드 | Fandom Commerce & Entertainment</title>
 
-<!-- Open Graph (link previews) -->
+<!-- SEO -->
+<meta name="description" content="CultureCode (컬처코드) is a global consumer entertainment company connecting content, IP, fandom, and commerce. Building FNDM — a global fandom-based entertainment commerce platform for K-POP, anime, subculture, and artist IP." />
+<meta name="keywords" content="CultureCode, 컬처코드, 컬쳐코드, FNDM, 팬덤, 팬덤 커머스, 컨슈머 엔터테인먼트, fandom, fandom commerce, K-POP, 케이팝, 서브컬처, subculture, anime, 애니메이션, artist IP, 아티스트 IP, entertainment commerce, 엔터테인먼트, 컬렉터블, collectibles, 굿즈, MD" />
+<meta name="author" content="CultureCode Inc." />
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
+<link rel="canonical" href="https://www.culturecode.co.kr/" />
+<link rel="alternate" href="https://www.culturecode.co.kr/" hreflang="en" />
+<link rel="alternate" href="https://www.culturecode.co.kr/" hreflang="ko" />
+<link rel="alternate" href="https://www.culturecode.co.kr/" hreflang="x-default" />
+
+<!-- Open Graph -->
+<meta property="og:site_name" content="CultureCode inc." />
 <meta property="og:title" content="CultureCode inc." />
-<meta property="og:description" content="For the Real Ones." />
+<meta property="og:description" content="For the Real Ones. — A consumer entertainment company connecting content, IP, fandom, and commerce." />
 <meta property="og:type" content="website" />
-<meta property="og:image" content="og-image.png" />
+<meta property="og:url" content="https://www.culturecode.co.kr/" />
+<meta property="og:image" content="https://www.culturecode.co.kr/og-image.png" />
 <meta property="og:image:width" content="1254" />
 <meta property="og:image:height" content="1254" />
+<meta property="og:locale" content="en_US" />
+<meta property="og:locale:alternate" content="ko_KR" />
 
-<!-- Twitter Card -->
+<!-- Twitter -->
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content="CultureCode inc." />
 <meta name="twitter:description" content="For the Real Ones." />
-<meta name="twitter:image" content="og-image.png" />
+<meta name="twitter:image" content="https://www.culturecode.co.kr/og-image.png" />
 
 <meta name="theme-color" content="#ffffff" />
+
+<!-- JSON-LD: structured data so Google understands the brand -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "CultureCode Inc.",
+  "alternateName": ["컬처코드", "CultureCode", "컬쳐코드"],
+  "url": "https://www.culturecode.co.kr/",
+  "logo": "https://www.culturecode.co.kr/logo.png",
+  "image": "https://www.culturecode.co.kr/og-image.png",
+  "description": "A consumer entertainment company connecting content, IP, fandom, and commerce. Building FNDM — a global fandom-based entertainment commerce platform.",
+  "slogan": "For the Real Ones.",
+  "foundingLocation": {
+    "@type": "Place",
+    "address": { "@type": "PostalAddress", "addressCountry": "KR" }
+  },
+  "email": "hello@culturecode.co.kr",
+  "sameAs": [
+    "https://www.instagram.com/culturecode.official"
+  ],
+  "knowsAbout": [
+    "fandom commerce",
+    "consumer entertainment",
+    "K-POP",
+    "subculture",
+    "anime",
+    "artist IP",
+    "collectibles",
+    "팬덤 커머스",
+    "엔터테인먼트"
+  ]
+}
+</script>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -107,7 +154,6 @@
   .logo-mask {
     position: relative;
     width: min(340px, 60vw);
-    /* aspect ratio of the logo PNG (1457 / 214 ≈ 6.81) */
     aspect-ratio: 1457 / 214;
     overflow: hidden;
     -webkit-mask-image: url('logo.png');
@@ -134,7 +180,7 @@
     .logo-mask .bg-anim { display: none; }
   }
 
-  /* Headline */
+  /* Headlines */
   h1.headline {
     font-size: clamp(22px, 2.8vw, 28px);
     font-weight: 700;
@@ -185,103 +231,7 @@
     margin-bottom: 56px;
   }
 
-  /* CTA — black pill */
-  .cta-wrap {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 12px;
-  }
-
-  .cta {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    background: var(--fg);
-    color: #ffffff;
-    font-size: 14px;
-    font-weight: 600;
-    letter-spacing: 0.02em;
-    text-decoration: none;
-    padding: 16px 36px;
-    border-radius: 999px;
-    transition: background 0.18s ease, transform 0.18s ease;
-  }
-  .cta:hover { background: #2a2a2a; transform: translateY(-1px); }
-  .cta:active { transform: translateY(0); }
-
-  /* Footer — tighter spacing now */
-  footer {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 12px;
-    padding: 16px 28px 28px;
-    font-size: 10px;
-    color: var(--muted);
-    letter-spacing: 0.04em;
-  }
-
-  .ig-link {
-    color: var(--fg);
-    opacity: 0.85;
-    transition: opacity 0.18s ease, transform 0.18s ease;
-    display: inline-flex;
-  }
-  .ig-link:hover { opacity: 1; transform: translateY(-1px); }
-  .ig-link svg { width: 30px; height: 30px; display: block; }
-
-  .copy { font-size: 10px; color: var(--muted); }
-
-  /* Reveal */
-  .reveal {
-    opacity: 0;
-    transform: translateY(8px);
-    animation: reveal 0.7s ease forwards;
-  }
-  .reveal.d1 { animation-delay: 0.05s; }
-  .reveal.d2 { animation-delay: 0.18s; }
-  .reveal.d3 { animation-delay: 0.32s; }
-  .reveal.d4 { animation-delay: 0.46s; }
-  @keyframes reveal { to { opacity: 1; transform: translateY(0); } }
-
-  /* Scroll-triggered fade-in for sections below the fold */
-  .scroll-reveal {
-    opacity: 0;
-    transform: translateY(24px);
-    transition: opacity 0.9s cubic-bezier(0.2, 0.7, 0.2, 1),
-                transform 0.9s cubic-bezier(0.2, 0.7, 0.2, 1);
-    will-change: opacity, transform;
-  }
-  .scroll-reveal.is-visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
-
-  /* Letter-by-letter pop reveal — like acustable */
-  .pop-text {
-    display: inline-block;
-  }
-  .pop-text .ch {
-    display: inline-block;
-    opacity: 0;
-    transform: translateY(0.6em);
-    transition: opacity 0.55s cubic-bezier(0.2, 0.8, 0.2, 1),
-                transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
-    /* the 0.6/1.56 cubic curve is a soft "overshoot" — the bounce/pop */
-    will-change: opacity, transform;
-  }
-  .pop-text.is-visible .ch {
-    opacity: 1;
-    transform: translateY(0);
-  }
-  /* preserve normal whitespace between words */
-  .pop-text .ch.space {
-    width: 0.28em;
-    transition: none;
-    opacity: 1;
-  }
-
-  /* Outro section above CTA — bigger headline, sub-line */
+  /* Outro */
   .outro {
     text-align: center;
     margin: 24px 0 28px;
@@ -301,7 +251,107 @@
     color: var(--muted);
   }
 
-  /* Mobile */
+  /* CTA */
+  .cta-wrap {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 12px;
+  }
+  .cta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--fg);
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    text-decoration: none;
+    padding: 16px 36px;
+    border-radius: 999px;
+    transition: background 0.18s ease, transform 0.18s ease;
+  }
+  .cta:hover { background: #2a2a2a; transform: translateY(-1px); }
+  .cta:active { transform: translateY(0); }
+
+  /* Footer */
+  footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    padding: 16px 28px 28px;
+    font-size: 10px;
+    color: var(--muted);
+    letter-spacing: 0.04em;
+    text-align: center;
+  }
+  .ig-link {
+    color: var(--fg);
+    opacity: 0.85;
+    transition: opacity 0.18s ease, transform 0.18s ease;
+    display: inline-flex;
+  }
+  .ig-link:hover { opacity: 1; transform: translateY(-1px); }
+  .ig-link svg { width: 30px; height: 30px; display: block; }
+  .copy { font-size: 10px; color: var(--muted); line-height: 1.7; }
+  .copy a { color: inherit; text-decoration: none; }
+  .copy a:hover { color: var(--fg); }
+
+  /* Reveal */
+  .reveal {
+    opacity: 0;
+    transform: translateY(8px);
+    animation: reveal 0.7s ease forwards;
+  }
+  .reveal.d1 { animation-delay: 0.05s; }
+  .reveal.d2 { animation-delay: 0.18s; }
+  .reveal.d3 { animation-delay: 0.32s; }
+  .reveal.d4 { animation-delay: 0.46s; }
+  @keyframes reveal { to { opacity: 1; transform: translateY(0); } }
+
+  .scroll-reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.9s cubic-bezier(0.2, 0.7, 0.2, 1),
+                transform 0.9s cubic-bezier(0.2, 0.7, 0.2, 1);
+    will-change: opacity, transform;
+  }
+  .scroll-reveal.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ─── GLITCH TEXT (acustable-style RGB split) ─────── */
+  .glitch-target {
+    display: inline-block;
+    position: relative;
+  }
+  .glitch-target .ch {
+    display: inline-block;
+    position: relative;
+    transition: color 0.05s linear;
+  }
+  .glitch-target .ch.space { width: 0.28em; }
+
+  /* When a character is "glitching", layer cyan/magenta channels */
+  .glitch-target .ch.glitching {
+    color: var(--bg); /* fade fill so RGB shadows show as the visible color */
+    text-shadow:
+      -0.04em 0 0 #ff2a55,   /* magenta channel left */
+       0.04em 0 0 #00e7ff;   /* cyan channel right */
+    animation: glitch-jitter 0.12s steps(2, end) infinite;
+  }
+
+  @keyframes glitch-jitter {
+    0%   { transform: translate(0, 0); }
+    25%  { transform: translate(0.6px, -0.4px); }
+    50%  { transform: translate(-0.6px, 0.4px); }
+    75%  { transform: translate(0.4px, 0.6px); }
+    100% { transform: translate(0, 0); }
+  }
+
+  /* ─── MOBILE ──────────────────────────────────────── */
   @media (max-width: 640px) {
     .top-bar { padding: 16px 20px; }
     main { padding: 16px 22px 36px; }
@@ -320,7 +370,7 @@
   @media (prefers-reduced-motion: reduce) {
     .reveal { animation: none; opacity: 1; transform: none; }
     .scroll-reveal { opacity: 1; transform: none; transition: none; }
-    .pop-text .ch { opacity: 1; transform: none; transition: none; }
+    .glitch-target .ch.glitching { animation: none; text-shadow: none; color: var(--fg); }
     .logo-mask .bg-anim { display: none; }
     .logo-mask {
       background: url('logo.png') center / contain no-repeat;
@@ -346,7 +396,7 @@
       </div>
     </div>
 
-    <h1 class="headline reveal d2"><span class="pop-text" data-i18n="headline">For the Real Ones.</span></h1>
+    <h1 class="headline reveal d2"><span class="glitch-target" data-i18n="headline">For the Real Ones.</span></h1>
 
     <div class="hero-body reveal d2" data-i18n-html="hero">
       <p>CultureCode is a <strong>consumer entertainment company</strong><br/>creating a new consumption experience for fandom culture.</p>
@@ -354,7 +404,7 @@
     </div>
 
     <section class="section scroll-reveal">
-      <h2 class="section-heading"><span class="pop-text" data-i18n="what_title">What We Do</span></h2>
+      <h2 class="section-heading"><span class="glitch-target" data-i18n="what_title">What We Do</span></h2>
       <div data-i18n-html="what_body">
         <p>CultureCode connects content, IP, fandom, and commerce into one experience.</p>
         <p>We create fandom-driven content and turn IP and brands into cultural experiences fans truly want.</p>
@@ -364,7 +414,7 @@
     </section>
 
     <section class="section scroll-reveal">
-      <h2 class="section-heading"><span class="pop-text" data-i18n="mission_title">Our Mission</span></h2>
+      <h2 class="section-heading"><span class="glitch-target" data-i18n="mission_title">Our Mission</span></h2>
       <div data-i18n-html="mission_body">
         <p>We connect global fandom culture through content and commerce.</p>
         <p>We believe the culture fans love can expand into deeper experiences,<br/>stronger brands, and new business opportunities.</p>
@@ -376,8 +426,8 @@
     <p class="signature scroll-reveal"><strong data-i18n="signature">Team CultureCode</strong></p>
 
     <div class="outro scroll-reveal">
-      <h2 class="outro-headline"><span class="pop-text">For the Real Ones.</span></h2>
-      <p class="outro-sub" data-i18n="outro_sub">Let’s go deeper.</p>
+      <h2 class="outro-headline">For the Real Ones.</h2>
+      <p class="outro-sub">더 깊게 빠져보는 거야</p>
     </div>
 
     <div class="cta-wrap scroll-reveal">
@@ -396,13 +446,16 @@
       <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
     </svg>
   </a>
-  <div class="copy reveal d4">©CultureCode.inc</div>
+  <div class="copy reveal d4">
+    © CultureCode Inc. All rights reserved<br/>
+    Rooted in South Korea | <a href="mailto:hello@culturecode.co.kr">hello@culturecode.co.kr</a>
+  </div>
 </footer>
 
 <script>
   const i18n = {
     en: {
-      title: 'CultureCode inc.',
+      title: 'CultureCode inc. — 컬처코드 | Fandom Commerce & Entertainment',
       headline: 'For the Real Ones.',
       hero:
         '<p>CultureCode is a <strong>consumer entertainment company</strong><br/>creating a new consumption experience for fandom culture.</p>' +
@@ -418,12 +471,11 @@
         '<p>Our platform, <strong>FNDM</strong>, is a global fandom-based entertainment commerce platform<br/>built for the next generation of fans.</p>' +
         '<p>Through subculture, artist IP, K-POP content, and fan-driven products,<br/><strong>FNDM</strong> helps global fans discover, experience, and own the culture they love.</p>',
       signature: 'Team CultureCode',
-      outro_sub: 'Let’s go deeper.',
       cta: 'Inquiries',
       mailSubject: 'Inquiry — culturecode'
     },
     ko: {
-      title: 'CultureCode inc.',
+      title: 'CultureCode inc. — 컬처코드 | 팬덤 커머스 & 엔터테인먼트',
       headline: 'For the Real Ones.',
       hero:
         '<p>컬처코드는 팬덤 문화를 위한 새로운 소비 경험을 만들어가는<br/><strong>컨슈머 엔터테인먼트 컴퍼니</strong>입니다.</p>' +
@@ -438,7 +490,6 @@
         '<p>컬처코드가 준비 중인 <strong>FNDM</strong>은 다음 세대 팬들을 위한<br/>글로벌 팬덤 기반 엔터테인먼트 커머스 플랫폼입니다.</p>' +
         '<p><strong>FNDM</strong>은 K-POP, 아티스트 IP, 서브컬처, 애니메 등 팬덤 기반 상품을 중심으로<br/>글로벌 팬들이 자신이 사랑하는 문화를 발견하고, 경험하고, 소유할 수 있도록 돕습니다.</p>',
       signature: 'Team CultureCode',
-      outro_sub: '더 깊게 빠져보는 거야!',
       cta: '문의하기',
       mailSubject: '문의 — 컬처코드'
     }
@@ -472,28 +523,10 @@
     try { localStorage.setItem('cc-lang', lang); } catch (e) {}
   }
 
-  document.querySelectorAll('.lang-toggle button').forEach(b => {
-    b.addEventListener('click', () => {
-      setLang(b.dataset.lang);
-      // i18n rewrote textContent — re-split pop-text and re-trigger if visible
-      document.querySelectorAll('.pop-text').forEach(el => {
-        el.dataset.popSplit = '';
-        splitPopText(el);
-      });
-      document.querySelectorAll('.pop-text.is-visible').forEach(el => {
-        el.classList.remove('is-visible');
-        void el.offsetWidth; // reflow
-        el.classList.add('is-visible');
-      });
-    });
-  });
-
-  // ─── Pop-text: split each .pop-text into per-character spans ───
-  function splitPopText(el) {
-    if (!el || el.dataset.popSplit === '1') return;
+  // ─── Split each glitch target into per-character spans ───
+  function splitGlitchText(el) {
     const text = el.textContent;
     el.textContent = '';
-    let charIndex = 0;
     for (const ch of text) {
       const span = document.createElement('span');
       if (ch === ' ') {
@@ -502,13 +535,20 @@
       } else {
         span.className = 'ch';
         span.textContent = ch;
-        span.style.transitionDelay = (charIndex * 0.035) + 's';
-        charIndex++;
       }
       el.appendChild(span);
     }
-    el.dataset.popSplit = '1';
   }
+  function reSplitAllGlitchTargets() {
+    document.querySelectorAll('.glitch-target').forEach(el => splitGlitchText(el));
+  }
+
+  document.querySelectorAll('.lang-toggle button').forEach(b => {
+    b.addEventListener('click', () => {
+      setLang(b.dataset.lang);
+      reSplitAllGlitchTargets();  // i18n rewrote textContent — re-split
+    });
+  });
 
   let initial = 'en';
   try {
@@ -517,13 +557,10 @@
     else if (navigator.language && navigator.language.toLowerCase().startsWith('ko')) initial = 'ko';
   } catch (e) {}
   setLang(initial);
+  reSplitAllGlitchTargets();
 
-  // initial pop-text split
-  document.querySelectorAll('.pop-text').forEach(el => splitPopText(el));
-
-  // ─── Scroll-triggered reveal ─────────────────────
-  // Each .scroll-reveal / .pop-text element animates the first time it enters the viewport.
-  const targets = document.querySelectorAll('.scroll-reveal, .pop-text');
+  // ─── Scroll reveal ─────────────────────
+  const targets = document.querySelectorAll('.scroll-reveal');
   if ('IntersectionObserver' in window) {
     const io = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
@@ -532,14 +569,69 @@
           io.unobserve(entry.target);
         }
       });
-    }, {
-      threshold: 0.15,
-      rootMargin: '0px 0px -8% 0px'
-    });
+    }, { threshold: 0.15, rootMargin: '0px 0px -8% 0px' });
     targets.forEach(el => io.observe(el));
   } else {
     targets.forEach(el => el.classList.add('is-visible'));
   }
+
+  // ─── Auto glitch loop: ONE target glitches at a time ───
+  // Cycles through .glitch-target elements; in each cycle it picks one,
+  // glitches a few of its characters in quick succession, then moves on.
+  (function startGlitchLoop() {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    const targets = Array.from(document.querySelectorAll('.glitch-target'));
+    if (!targets.length) return;
+    let cursor = 0;
+
+    function rand(min, max) { return min + Math.random() * (max - min); }
+    function pickChars(target) {
+      const chars = Array.from(target.querySelectorAll('.ch:not(.space)'));
+      if (!chars.length) return [];
+      // pick ~25–45% of characters, but at least 2 if possible
+      const ratio = rand(0.25, 0.45);
+      const count = Math.max(2, Math.min(chars.length, Math.round(chars.length * ratio)));
+      const pool = chars.slice();
+      const picked = [];
+      while (picked.length < count && pool.length) {
+        const i = Math.floor(Math.random() * pool.length);
+        picked.push(pool.splice(i, 1)[0]);
+      }
+      return picked;
+    }
+
+    function runOnce(target, done) {
+      const burstCount = Math.floor(rand(2, 4));  // 2–3 quick flickers
+      let i = 0;
+      function burst() {
+        const chosen = pickChars(target);
+        chosen.forEach(c => c.classList.add('glitching'));
+        const dur = rand(90, 180);
+        setTimeout(() => {
+          chosen.forEach(c => c.classList.remove('glitching'));
+          i++;
+          if (i < burstCount) {
+            setTimeout(burst, rand(60, 140));
+          } else {
+            done();
+          }
+        }, dur);
+      }
+      burst();
+    }
+
+    function loop() {
+      const target = targets[cursor];
+      cursor = (cursor + 1) % targets.length;
+      runOnce(target, () => {
+        // wait a bit before next target
+        setTimeout(loop, rand(1400, 2600));
+      });
+    }
+    // initial delay so the page can settle in
+    setTimeout(loop, 1500);
+  })();
 </script>
 </body>
 </html>

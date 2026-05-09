@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/0.9">
+
+  <url>
+    <loc>https://www.culturecode.co.kr/</loc>
+    <lastmod>2026-05-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.culturecode.co.kr/" />
+    <xhtml:link rel="alternate" hreflang="ko" href="https://www.culturecode.co.kr/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.culturecode.co.kr/" />
+    <image:image>
+      <image:loc>https://www.culturecode.co.kr/og-image.png</image:loc>
+      <image:title>CultureCode Inc.</image:title>
+      <image:caption>For the Real Ones. — A consumer entertainment company connecting content, IP, fandom, and commerce.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.culturecode.co.kr/logo.png</image:loc>
+      <image:title>CultureCode Logo</image:title>
+    </image:image>
+  </url>
+
+</urlset>
