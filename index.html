@@ -122,7 +122,7 @@
     background: none;
     border: none;
     color: var(--muted);
-    padding: 6px 8px;
+    padding: 6px 6px;
     cursor: pointer;
     font: inherit;
     transition: color 0.18s ease;
@@ -466,6 +466,10 @@
     <button id="lang-en" class="active" data-lang="en" aria-pressed="true">EN</button>
     <span class="sep">/</span>
     <button id="lang-ko" data-lang="ko" aria-pressed="false">KOR</button>
+    <span class="sep">/</span>
+    <button id="lang-ja" data-lang="ja" aria-pressed="false">JP</button>
+    <span class="sep">/</span>
+    <button id="lang-zh" data-lang="zh" aria-pressed="false">CN</button>
   </nav>
 </div>
 
@@ -574,12 +578,51 @@
       signature: 'Team CultureCode',
       cta: '협업 문의하기',
       mailSubject: '협업문의 — 컬처코드'
+    },
+    ja: {
+      title: 'CultureCode | 컬처코드',
+      headline: 'For the Real Ones.',
+      hero:
+        '<p>CultureCodeは、ファンダム文化に新しい消費体験を作る<br/><strong>コンシューマーエンターテインメント企業</strong>です。</p>' +
+        '<p>私たちはコンテンツ、IP、ファンダム、コマースをつなぎ、<br/>世界中のファンが愛する文化をより深く体験し、所有できる方法を生み出します。</p>',
+      mission_title: 'Our Mission',
+      mission_body:
+        '<p>私たちのミッションは、<strong>コンテンツとコマースを通じて世界のファンダム文化をつなぐこと。</strong></p>' +
+        '<p>CultureCodeはファンダム文化をコンテンツ、コマース、そして新しい体験へと拡張し、<br/>ファンが愛するものと、文化が成りうる姿の橋渡しをします。</p>',
+      what_title: 'What We Do',
+      what_body:
+        '<p>CultureCodeはコンテンツ、IP、ファンダム、コマースを<strong>ひとつの体験につなぎます。</strong></p>' +
+        '<p>私たちが準備中の<strong>FNDM</strong>は、次世代ファンのための<br/>グローバル・ファンダムベースのエンターテインメント・コマースプラットフォームです。</p>' +
+        '<p><strong>FNDM</strong>はK-POP、サブカルチャーIP、アニメなど、<br/>ファンダム由来のプロダクトを中心に、世界中のファンが愛する文化を<br/>発見し、体験し、所有できるようサポートします。</p>',
+      signature: 'Team CultureCode',
+      cta: 'お問い合わせ',
+      mailSubject: 'お問い合わせ — culturecode'
+    },
+    zh: {
+      title: 'CultureCode | 컬처코드',
+      headline: 'For the Real Ones.',
+      hero:
+        '<p>CultureCode是一家为粉丝文化创造全新消费体验的<br/><strong>消费者娱乐公司</strong>。</p>' +
+        '<p>我们连接内容、IP、粉丝群与商业,<br/>让全球粉丝以更深的方式体验并拥有他们所热爱的文化。</p>',
+      mission_title: 'Our Mission',
+      mission_body:
+        '<p>我们的使命是<strong>通过内容与商业,连接全球粉丝文化。</strong></p>' +
+        '<p>CultureCode将粉丝文化延伸至内容、商业与全新体验,<br/>在粉丝所爱与文化所能成就之间,搭建桥梁。</p>',
+      what_title: 'What We Do',
+      what_body:
+        '<p>CultureCode将内容、IP、粉丝群与商业<strong>融合为一种体验。</strong></p>' +
+        '<p>我们正在筹备的<strong>FNDM</strong>,是为下一代粉丝打造的<br/>全球粉丝向娱乐商业平台。</p>' +
+        '<p><strong>FNDM</strong>以K-POP、亚文化IP、动漫等粉丝向产品为核心,<br/>帮助全球粉丝发现、体验并拥有他们所热爱的文化。</p>',
+      signature: 'Team CultureCode',
+      cta: '联系我们',
+      mailSubject: '咨询 — culturecode'
     }
   };
 
   function setLang(lang) {
     const dict = i18n[lang];
-    document.documentElement.lang = lang === 'ko' ? 'ko' : 'en';
+    if (!dict) return;
+    document.documentElement.lang = lang;
     document.title = dict.title;
 
     document.querySelectorAll('[data-i18n]').forEach(el => {
@@ -633,11 +676,13 @@
     });
   });
 
+  // Always default to English. User's saved choice persists across visits;
+  // we intentionally do NOT auto-detect from navigator.language so first-time
+  // visitors always land on English regardless of their browser locale.
   let initial = 'en';
   try {
     const saved = localStorage.getItem('cc-lang');
-    if (saved === 'en' || saved === 'ko') initial = saved;
-    else if (navigator.language && navigator.language.toLowerCase().startsWith('ko')) initial = 'ko';
+    if (['en', 'ko', 'ja', 'zh'].includes(saved)) initial = saved;
   } catch (e) {}
   setLang(initial);
   reSplitAllGlitchTargets();
