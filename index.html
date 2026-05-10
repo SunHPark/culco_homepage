@@ -223,7 +223,7 @@
   .divider {
     border: none;
     border-top: 1px solid var(--line);
-    margin: 8px 0 32px;
+    margin: 0 0 40px;
   }
 
   .signature {
@@ -231,7 +231,23 @@
     font-weight: 400;
     line-height: 1.65;
     color: var(--fg);
-    margin-bottom: 56px;
+    margin-bottom: 32px;
+  }
+
+  /* FNDM logo placement at end of What We Do section */
+  .fndm-logo-wrap {
+    display: flex;
+    justify-content: flex-start;
+    margin-top: 40px;
+  }
+  .fndm-logo {
+    height: auto;
+    width: 110px;
+    display: block;
+    user-select: none;
+  }
+  @media (max-width: 640px) {
+    .fndm-logo { width: 90px; }
   }
 
   /* Outro */
@@ -475,6 +491,9 @@
         <p>Our platform, <strong>FNDM</strong>, is a global fandom-based entertainment commerce platform<br/>built for the next generation of fans.</p>
         <p>Through subculture, artist IP, K-POP content, and fan-driven products,<br/><strong>FNDM</strong> helps global fans discover, experience, and own the culture they love.</p>
       </div>
+      <div class="fndm-logo-wrap">
+        <img class="fndm-logo" src="fndm.svg" alt="FNDM" />
+      </div>
     </section>
 
     <section class="section scroll-reveal">
@@ -485,9 +504,9 @@
       </div>
     </section>
 
-    <hr class="divider scroll-reveal" />
-
     <p class="signature scroll-reveal"><strong data-i18n="signature">Team CultureCode</strong></p>
+
+    <hr class="divider scroll-reveal" />
 
     <div class="outro scroll-reveal">
       <h2 class="outro-headline">For the Real Ones.</h2>
