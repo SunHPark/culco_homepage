@@ -342,6 +342,15 @@
     transform: translateY(0);
   }
 
+  /* Smooth language fade — applied to all translated elements during a switch */
+  .lang-fading {
+    opacity: 0 !important;
+    transition: opacity 0.22s ease;
+  }
+  [data-i18n], [data-i18n-html] {
+    transition: opacity 0.32s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
   /* ─── GLITCH TEXT (acustable-style: boxed RGB-split with layered channels) ─── */
   .glitch-target {
     display: inline-block;
@@ -445,6 +454,8 @@
   @media (prefers-reduced-motion: reduce) {
     .reveal { animation: none; opacity: 1; transform: none; }
     .scroll-reveal { opacity: 1; transform: none; transition: none; }
+    [data-i18n], [data-i18n-html] { transition: none; }
+    .lang-fading { opacity: 1 !important; }
     .glitch-target .ch.glitching {
       animation: none; background: none; box-shadow: none; color: var(--fg);
     }
@@ -669,11 +680,35 @@
     document.querySelectorAll('.glitch-target').forEach(el => splitGlitchText(el));
   }
 
+  // Smoothly transition between languages: fade out → swap content → fade in
+  function switchLangWithFade(lang) {
+    if (i18n[lang] === undefined) return;
+    // If user clicked the already-active language, do nothing (avoids unnecessary flicker)
+    const currentSaved = (() => {
+      try { return localStorage.getItem('cc-lang') || 'en'; } catch (e) { return 'en'; }
+    })();
+    if (lang === currentSaved && document.documentElement.lang === lang) return;
+
+    const fadeTargets = document.querySelectorAll('[data-i18n], [data-i18n-html]');
+
+    // Fade out
+    fadeTargets.forEach(el => el.classList.add('lang-fading'));
+
+    // After the fade-out completes, swap the text and fade back in
+    setTimeout(() => {
+      setLang(lang);
+      reSplitAllGlitchTargets();
+
+      // Force a reflow so the browser registers the new content while still faded
+      void document.body.offsetWidth;
+
+      // Fade in
+      fadeTargets.forEach(el => el.classList.remove('lang-fading'));
+    }, 220);  // matches .lang-fading transition duration
+  }
+
   document.querySelectorAll('.lang-toggle button').forEach(b => {
-    b.addEventListener('click', () => {
-      setLang(b.dataset.lang);
-      reSplitAllGlitchTargets();  // i18n rewrote textContent — re-split
-    });
+    b.addEventListener('click', () => switchLangWithFade(b.dataset.lang));
   });
 
   // Always default to English. User's saved choice persists across visits;
