@@ -295,7 +295,7 @@
     background: var(--bg);
     color: var(--fg);
     width: 100%;
-    max-width: 320px;
+    max-width: 260px;
     padding: 32px 28px 28px;
     border-radius: 14px;
     text-align: center;
@@ -338,6 +338,23 @@
     letter-spacing: 0;
     margin-bottom: 4px;
     color: var(--fg);
+  }
+  /* Wave the hand emoji once when the modal opens */
+  .fndm-modal-title .wave {
+    display: inline-block;
+    transform-origin: 70% 80%;  /* pivot near the wrist */
+  }
+  .fndm-modal.is-open .fndm-modal-title .wave {
+    animation: wave 1.6s ease-in-out 0.15s 1;
+  }
+  @keyframes wave {
+    0%   { transform: rotate(0deg); }
+    15%  { transform: rotate(14deg); }
+    30%  { transform: rotate(-8deg); }
+    45%  { transform: rotate(14deg); }
+    60%  { transform: rotate(-4deg); }
+    75%  { transform: rotate(10deg); }
+    100% { transform: rotate(0deg); }
   }
 
   /* Outro */
@@ -553,6 +570,7 @@
     .glitch-target .ch.glitching::after {
       animation: none; opacity: 0;
     }
+    .fndm-modal.is-open .fndm-modal-title .wave { animation: none; }
     .logo-mask .bg-anim { display: none; }
     .logo-mask {
       background: url('logo.png') center / contain no-repeat;
@@ -672,7 +690,7 @@
       signature: 'Team CultureCode',
       cta: 'Inquiries',
       mailSubject: 'Inquiry — culturecode',
-      fndm_title: "It's launching soon. 👋🏻"
+      fndm_title: "It's launching soon. <span class=\"wave\">👋🏻</span>"
     },
     ko: {
       title: 'CultureCode | 컬처코드',
@@ -692,7 +710,7 @@
       signature: 'Team CultureCode',
       cta: '협업 문의하기',
       mailSubject: '협업문의 — 컬처코드',
-      fndm_title: "It's launching soon. 👋🏻"
+      fndm_title: "It's launching soon. <span class=\"wave\">👋🏻</span>"
     },
     ja: {
       title: 'CultureCode | 컬처코드',
@@ -712,7 +730,7 @@
       signature: 'Team CultureCode',
       cta: 'お問い合わせ',
       mailSubject: 'お問い合わせ — culturecode',
-      fndm_title: 'まもなく公開予定。 👋🏻'
+      fndm_title: 'まもなく公開予定。 <span class="wave">👋🏻</span>'
     },
     zh: {
       title: 'CultureCode | 컬처코드',
@@ -732,7 +750,7 @@
       signature: 'Team CultureCode',
       cta: '联系我们',
       mailSubject: '咨询 — culturecode',
-      fndm_title: '即将上线。 👋🏻'
+      fndm_title: '即将上线。 <span class="wave">👋🏻</span>'
     }
   };
 
@@ -920,12 +938,20 @@
 
     function openFndmModal() {
       const dict = i18n[getLang()] || i18n.en;
-      fndmTitleEl.textContent = dict.fndm_title;
+      fndmTitleEl.innerHTML = dict.fndm_title;
 
       fndmModal.hidden = false;
       void fndmModal.offsetWidth;
       fndmModal.classList.add('is-open');
       document.body.style.overflow = 'hidden';
+
+      // Restart the wave animation each time the modal opens
+      const wave = fndmTitleEl.querySelector('.wave');
+      if (wave) {
+        wave.style.animation = 'none';
+        void wave.offsetWidth;  // reflow
+        wave.style.animation = '';
+      }
     }
 
     function closeFndmModal() {
@@ -952,7 +978,7 @@
     const titleEl = document.getElementById('fndm-modal-title');
     if (!modal || !titleEl || modal.hidden) return;
     const dict = i18n[lang] || i18n.en;
-    titleEl.textContent = dict.fndm_title;
+    titleEl.innerHTML = dict.fndm_title;
   }
 </script>
 </body>
