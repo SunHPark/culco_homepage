@@ -866,17 +866,30 @@
     targets.forEach(el => el.classList.add('is-visible'));
   }
 
-  // ─── Auto glitch loop: ONE target glitches at a time ───
-  // Cycles through .glitch-target elements; in each cycle it picks one,
-  // glitches a few of its characters in quick succession, then moves on.
+  // ─── Auto glitch loop: ONE target glitches at a time, in random order ───
+  // Each visitor gets a different shuffled order on page load; within a
+  // session, the next target is picked at random (avoiding immediate repeats),
+  // so the rhythm never feels predictable.
   (function startGlitchLoop() {
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
     const targets = Array.from(document.querySelectorAll('.glitch-target'));
     if (!targets.length) return;
-    let cursor = 0;
 
     function rand(min, max) { return min + Math.random() * (max - min); }
+
+    // Pick a target other than the most recent one. With <=1 targets, just return that.
+    let lastIndex = -1;
+    function pickNextTarget() {
+      if (targets.length === 1) return targets[0];
+      let idx;
+      do {
+        idx = Math.floor(Math.random() * targets.length);
+      } while (idx === lastIndex);
+      lastIndex = idx;
+      return targets[idx];
+    }
+
     function pickChars(target) {
       const chars = Array.from(target.querySelectorAll('.ch:not(.space)'));
       if (!chars.length) return [];
@@ -913,15 +926,14 @@
     }
 
     function loop() {
-      const target = targets[cursor];
-      cursor = (cursor + 1) % targets.length;
+      const target = pickNextTarget();
       runOnce(target, () => {
         // wait a bit before next target
         setTimeout(loop, rand(1400, 2600));
       });
     }
-    // initial delay so the page can settle in
-    setTimeout(loop, 1500);
+    // initial delay + small randomization so different visitors start at different beats
+    setTimeout(loop, rand(800, 2000));
   })();
 
   // ─── FNDM modal ───────────────────────────────────
