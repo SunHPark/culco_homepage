@@ -240,6 +240,21 @@
     justify-content: flex-start;
     margin-top: 24px;
   }
+  .fndm-logo-btn {
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    display: inline-block;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+  }
+  .fndm-logo-btn:hover { transform: translateY(-1px); opacity: 0.78; }
+  .fndm-logo-btn:active { transform: translateY(0); }
+  .fndm-logo-btn:focus-visible {
+    outline: 2px solid var(--fg);
+    outline-offset: 6px;
+    border-radius: 2px;
+  }
   .fndm-logo {
     height: auto;
     width: 110px;
@@ -249,6 +264,80 @@
   @media (max-width: 640px) {
     .fndm-logo-wrap { margin-top: 20px; }
     .fndm-logo { width: 90px; }
+  }
+
+  /* FNDM modal */
+  .fndm-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.25s ease;
+  }
+  .fndm-modal.is-open {
+    opacity: 1;
+    pointer-events: auto;
+  }
+  .fndm-modal-backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(10, 10, 10, 0.55);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+  }
+  .fndm-modal-card {
+    position: relative;
+    background: var(--bg);
+    color: var(--fg);
+    width: 100%;
+    max-width: 320px;
+    padding: 32px 28px 28px;
+    border-radius: 14px;
+    text-align: center;
+    box-shadow: 0 12px 60px rgba(0, 0, 0, 0.18);
+    transform: translateY(8px) scale(0.985);
+    transition: transform 0.28s cubic-bezier(0.2, 0.9, 0.3, 1);
+  }
+  .fndm-modal.is-open .fndm-modal-card {
+    transform: translateY(0) scale(1);
+  }
+  .fndm-modal-close {
+    position: absolute;
+    top: 10px;
+    right: 12px;
+    background: none;
+    border: none;
+    font-size: 24px;
+    line-height: 1;
+    color: var(--muted);
+    cursor: pointer;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: color 0.15s ease;
+  }
+  .fndm-modal-close:hover { color: var(--fg); }
+  .fndm-modal-logo {
+    height: auto;
+    width: 72px;
+    display: block;
+    margin: 4px auto 18px;
+    user-select: none;
+  }
+  .fndm-modal-title {
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.65;
+    letter-spacing: 0;
+    margin-bottom: 4px;
+    color: var(--fg);
   }
 
   /* Outro */
@@ -448,6 +537,7 @@
     h2.section-heading { margin-bottom: 14px; }
     .signature { font-size: 13px; margin-bottom: 44px; }
     .cta { padding: 14px 30px; font-size: 13px; }
+    .fndm-modal-title { font-size: 13px; }
     footer { padding: 14px 20px 24px; gap: 10px; }
   }
 
@@ -508,7 +598,9 @@
         <p>Through subculture, artist IP, K-POP content, and fan-driven products,<br/><strong>FNDM</strong> helps global fans discover, experience, and own the culture they love.</p>
       </div>
       <div class="fndm-logo-wrap">
-        <img class="fndm-logo" src="fndm.svg" alt="FNDM" />
+        <button class="fndm-logo-btn" id="fndm-trigger" type="button" aria-label="FNDM">
+          <img class="fndm-logo" src="fndm.svg" alt="FNDM" />
+        </button>
       </div>
     </section>
 
@@ -535,6 +627,16 @@
     </div>
   </div>
 </main>
+
+<!-- FNDM modal -->
+<div class="fndm-modal" id="fndm-modal" role="dialog" aria-modal="true" aria-labelledby="fndm-modal-title" hidden>
+  <div class="fndm-modal-backdrop" data-fndm-close></div>
+  <div class="fndm-modal-card">
+    <button class="fndm-modal-close" type="button" data-fndm-close aria-label="Close">×</button>
+    <img class="fndm-modal-logo" src="fndm.svg" alt="FNDM" />
+    <h3 class="fndm-modal-title" id="fndm-modal-title">It's launching soon.</h3>
+  </div>
+</div>
 
 <footer>
   <a class="ig-link reveal d4" href="https://www.instagram.com/culturecode.official" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
@@ -569,7 +671,8 @@
         '<p>Through subculture, artist IP, K-POP content, and fandom-driven products,<br/><strong>FNDM</strong> helps global fans discover, experience, and own the culture they love.</p>',
       signature: 'Team CultureCode',
       cta: 'Inquiries',
-      mailSubject: 'Inquiry — culturecode'
+      mailSubject: 'Inquiry — culturecode',
+      fndm_title: "It's launching soon. 👋🏻"
     },
     ko: {
       title: 'CultureCode | 컬처코드',
@@ -588,7 +691,8 @@
         '<p><strong>FNDM</strong>은 K-POP, 서브컬처 IP, 애니메 등 <br/> 팬덤 기반 상품을 중심으로 글로벌 팬들이 자신이 사랑하는 문화를 <br/> 발견하고, 경험하고, 소유할 수 있도록 돕습니다.</p>',
       signature: 'Team CultureCode',
       cta: '협업 문의하기',
-      mailSubject: '협업문의 — 컬처코드'
+      mailSubject: '협업문의 — 컬처코드',
+      fndm_title: "It's launching soon. 👋🏻"
     },
     ja: {
       title: 'CultureCode | 컬처코드',
@@ -607,7 +711,8 @@
         '<p><strong>FNDM</strong>はK-POP、サブカルチャーIP、アニメなど、<br/>ファンダム由来のプロダクトを中心に、世界中のファンが愛する文化を<br/>発見し、体験し、所有できるようサポートします。</p>',
       signature: 'Team CultureCode',
       cta: 'お問い合わせ',
-      mailSubject: 'お問い合わせ — culturecode'
+      mailSubject: 'お問い合わせ — culturecode',
+      fndm_title: 'まもなく公開予定。 👋🏻'
     },
     zh: {
       title: 'CultureCode | 컬처코드',
@@ -626,7 +731,8 @@
         '<p><strong>FNDM</strong>以K-POP、亚文化IP、动漫等粉丝向产品为核心,<br/>帮助全球粉丝发现、体验并拥有他们所热爱的文化。</p>',
       signature: 'Team CultureCode',
       cta: '联系我们',
-      mailSubject: '咨询 — culturecode'
+      mailSubject: '咨询 — culturecode',
+      fndm_title: '即将上线。 👋🏻'
     }
   };
 
@@ -655,6 +761,9 @@
       b.classList.toggle('active', isActive);
       b.setAttribute('aria-pressed', isActive ? 'true' : 'false');
     });
+
+    // If modal is open, refresh its text in the new language
+    refreshModalText(lang);
 
     try { localStorage.setItem('cc-lang', lang); } catch (e) {}
   }
@@ -796,6 +905,55 @@
     // initial delay so the page can settle in
     setTimeout(loop, 1500);
   })();
+
+  // ─── FNDM modal ───────────────────────────────────
+  (function initFndmModal() {
+    const fndmModal     = document.getElementById('fndm-modal');
+    const fndmTrigger   = document.getElementById('fndm-trigger');
+    const fndmTitleEl   = document.getElementById('fndm-modal-title');
+
+    if (!fndmModal || !fndmTrigger || !fndmTitleEl) return;
+
+    function getLang() {
+      return document.documentElement.lang in i18n ? document.documentElement.lang : 'en';
+    }
+
+    function openFndmModal() {
+      const dict = i18n[getLang()] || i18n.en;
+      fndmTitleEl.textContent = dict.fndm_title;
+
+      fndmModal.hidden = false;
+      void fndmModal.offsetWidth;
+      fndmModal.classList.add('is-open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeFndmModal() {
+      fndmModal.classList.remove('is-open');
+      document.body.style.overflow = '';
+      setTimeout(() => { fndmModal.hidden = true; }, 250);
+    }
+
+    fndmTrigger.addEventListener('click', openFndmModal);
+    fndmModal.querySelectorAll('[data-fndm-close]').forEach(el => {
+      el.addEventListener('click', closeFndmModal);
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && fndmModal.classList.contains('is-open')) {
+        closeFndmModal();
+      }
+    });
+  })();
+
+  // Updates modal title if language is switched while modal is open.
+  // Uses DOM lookup (not a captured const) so it's safe to call from anywhere.
+  function refreshModalText(lang) {
+    const modal = document.getElementById('fndm-modal');
+    const titleEl = document.getElementById('fndm-modal-title');
+    if (!modal || !titleEl || modal.hidden) return;
+    const dict = i18n[lang] || i18n.en;
+    titleEl.textContent = dict.fndm_title;
+  }
 </script>
 </body>
 </html>
