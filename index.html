@@ -161,8 +161,10 @@
     overflow: hidden;
     -webkit-mask-image: url('logo.png');
     mask-image: url('logo.png');
-    -webkit-mask-size: 100% 100%;
-    mask-size: 100% 100%;
+    -webkit-mask-size: contain;
+    mask-size: contain;
+    -webkit-mask-position: center;
+    mask-position: center;
     -webkit-mask-repeat: no-repeat;
     mask-repeat: no-repeat;
   }
@@ -556,6 +558,16 @@
     .cta { padding: 14px 30px; font-size: 13px; }
     .fndm-modal-title { font-size: 13px; }
     footer { padding: 14px 20px 24px; gap: 10px; }
+  }
+
+  /* ─── LANDSCAPE PHONES ────────────────────────────────
+     Phones held sideways: viewport gets very wide but very short.
+     Without this, the logo balloons to 60vw and the hero area gets
+     pushed off-screen. Cap the logo and tighten vertical spacing. */
+  @media (max-width: 900px) and (orientation: landscape) {
+    .logo-wrap { margin-top: 12px; margin-bottom: 48px; }
+    .logo-mask { width: min(280px, 38vw); }
+    main { padding: 12px 28px 28px; }
   }
 
   @media (prefers-reduced-motion: reduce) {
