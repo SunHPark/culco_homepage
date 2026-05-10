@@ -342,13 +342,13 @@
     transform: translateY(0);
   }
 
-  /* Smooth language fade — applied to all translated elements during a switch */
-  .lang-fading {
-    opacity: 0 !important;
-    transition: opacity 0.22s ease;
+  /* Smooth language fade — applied to the whole .page container at once
+     so every translated element fades in unison rather than top-to-bottom. */
+  .page {
+    transition: opacity 0.28s cubic-bezier(0.4, 0, 0.2, 1);
   }
-  [data-i18n], [data-i18n-html] {
-    transition: opacity 0.32s cubic-bezier(0.4, 0, 0.2, 1);
+  .page.lang-fading {
+    opacity: 0;
   }
 
   /* ─── GLITCH TEXT (acustable-style: boxed RGB-split with layered channels) ─── */
@@ -454,8 +454,8 @@
   @media (prefers-reduced-motion: reduce) {
     .reveal { animation: none; opacity: 1; transform: none; }
     .scroll-reveal { opacity: 1; transform: none; transition: none; }
-    [data-i18n], [data-i18n-html] { transition: none; }
-    .lang-fading { opacity: 1 !important; }
+    .page { transition: none; }
+    .page.lang-fading { opacity: 1; }
     .glitch-target .ch.glitching {
       animation: none; background: none; box-shadow: none; color: var(--fg);
     }
@@ -680,31 +680,32 @@
     document.querySelectorAll('.glitch-target').forEach(el => splitGlitchText(el));
   }
 
-  // Smoothly transition between languages: fade out → swap content → fade in
+  // Smoothly transition between languages: fade out the whole page container,
+  // swap content while invisible, fade back in. Synchronized so nothing pops.
   function switchLangWithFade(lang) {
     if (i18n[lang] === undefined) return;
-    // If user clicked the already-active language, do nothing (avoids unnecessary flicker)
-    const currentSaved = (() => {
-      try { return localStorage.getItem('cc-lang') || 'en'; } catch (e) { return 'en'; }
-    })();
-    if (lang === currentSaved && document.documentElement.lang === lang) return;
+    if (lang === document.documentElement.lang) return; // already on this lang
 
-    const fadeTargets = document.querySelectorAll('[data-i18n], [data-i18n-html]');
+    const page = document.querySelector('.page');
+    if (!page) {
+      setLang(lang);
+      reSplitAllGlitchTargets();
+      return;
+    }
 
     // Fade out
-    fadeTargets.forEach(el => el.classList.add('lang-fading'));
+    page.classList.add('lang-fading');
 
-    // After the fade-out completes, swap the text and fade back in
+    // Wait for the fade-out to finish, then swap and fade back in.
+    // 280ms = matches the CSS transition duration on .page.
     setTimeout(() => {
       setLang(lang);
       reSplitAllGlitchTargets();
-
-      // Force a reflow so the browser registers the new content while still faded
-      void document.body.offsetWidth;
-
+      // force layout flush so the browser applies the new content while still invisible
+      void page.offsetWidth;
       // Fade in
-      fadeTargets.forEach(el => el.classList.remove('lang-fading'));
-    }, 220);  // matches .lang-fading transition duration
+      page.classList.remove('lang-fading');
+    }, 280);
   }
 
   document.querySelectorAll('.lang-toggle button').forEach(b => {
