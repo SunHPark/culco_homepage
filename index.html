@@ -628,9 +628,9 @@
         <p>Through subculture, artist IP, K-POP content, and fan-driven products,<br/><strong>FNDM</strong> helps global fans discover, experience, and own the culture they love.</p>
       </div>
       <div class="fndm-logo-wrap">
-        <button class="fndm-logo-btn" id="fndm-trigger" type="button" aria-label="FNDM">
+        <a class="fndm-logo-btn" id="fndm-trigger" href="https://www.thefndm.com" target="_blank" rel="noopener noreferrer" aria-label="FNDM">
           <img class="fndm-logo" src="fndm.svg" alt="FNDM" />
-        </button>
+        </a>
       </div>
     </section>
 
@@ -984,7 +984,6 @@
       setTimeout(() => { fndmModal.hidden = true; }, 250);
     }
 
-    fndmTrigger.addEventListener('click', openFndmModal);
     fndmModal.querySelectorAll('[data-fndm-close]').forEach(el => {
       el.addEventListener('click', closeFndmModal);
     });
