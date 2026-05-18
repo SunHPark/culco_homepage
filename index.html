@@ -359,6 +359,128 @@
     100% { transform: rotate(0deg); }
   }
 
+  /* ─── PRESS SECTION ────────────────────────────────── */
+  .press-section {
+    margin-bottom: 40px;
+  }
+
+  /* Notion-style #press pill */
+  .press-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 14px 6px 12px;
+    background: rgba(10, 10, 10, 0.04);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--fg);
+    letter-spacing: 0;
+    margin-bottom: 16px;
+    user-select: none;
+  }
+  .press-pill svg {
+    width: 14px;
+    height: 14px;
+    opacity: 0.6;
+    flex-shrink: 0;
+  }
+
+  /* Notion-style bookmark cards */
+  .press-bookmarks {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .bookmark {
+    display: flex;
+    align-items: stretch;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    overflow: hidden;
+    text-decoration: none;
+    color: var(--fg);
+    transition: background 0.18s ease, border-color 0.18s ease, transform 0.18s ease;
+    background: var(--bg);
+  }
+  .bookmark:hover {
+    background: rgba(10, 10, 10, 0.025);
+    border-color: rgba(10, 10, 10, 0.18);
+  }
+  .bookmark-content {
+    flex: 1;
+    min-width: 0;
+    padding: 14px 16px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 4px;
+    overflow: hidden;
+  }
+  .bookmark-title {
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1.4;
+    color: var(--fg);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+  }
+  .bookmark-desc {
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 1.45;
+    color: var(--muted);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+  }
+  .bookmark-url {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 6px;
+    font-size: 11px;
+    color: var(--muted);
+    line-height: 1;
+  }
+  .bookmark-favicon {
+    width: 14px;
+    height: 14px;
+    border-radius: 2px;
+    flex-shrink: 0;
+    object-fit: contain;
+    background: rgba(10, 10, 10, 0.04);
+  }
+  .bookmark-url-text {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .bookmark-thumb {
+    width: 140px;
+    flex-shrink: 0;
+    background: rgba(10, 10, 10, 0.04);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+  @media (max-width: 640px) {
+    .bookmark-thumb {
+      width: 100px;
+    }
+    .bookmark-content {
+      padding: 12px 14px;
+    }
+    .bookmark-title { font-size: 13px; }
+    .bookmark-desc { font-size: 11px; }
+  }
+
   /* Outro */
   .outro {
     text-align: center;
@@ -643,6 +765,46 @@
     </section>
 
     <p class="signature scroll-reveal"><strong data-i18n="signature">Team CultureCode</strong></p>
+
+    <hr class="divider scroll-reveal" />
+
+    <div class="press-section scroll-reveal">
+      <div class="press-pill" aria-label="press">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="12" cy="12" r="9"></circle>
+          <path d="M3 12h18"></path>
+          <path d="M12 3a14 14 0 0 1 0 18"></path>
+          <path d="M12 3a14 14 0 0 0 0 18"></path>
+        </svg>
+        <span>#press</span>
+      </div>
+
+      <div class="press-bookmarks">
+        <a class="bookmark" href="https://platum.kr/archives/287066" target="_blank" rel="noopener noreferrer">
+          <div class="bookmark-content">
+            <div class="bookmark-title">컬처코드, 글로벌 팬덤 커머스 플랫폼 'FNDM' 공개</div>
+            <div class="bookmark-desc">콘텐츠·IP·팬덤·커머스를 연결하는 컨슈머 엔터테인먼트 기업 컬처코드가 다음 세대 팬들을 위한 글로벌 팬덤 기반 엔터테인먼트 커머스 플랫폼 FNDM을 공식 발표했다.</div>
+            <div class="bookmark-url">
+              <img class="bookmark-favicon" src="https://www.google.com/s2/favicons?domain=platum.kr&sz=64" alt="" loading="lazy" />
+              <span class="bookmark-url-text">platum.kr/archives/287066</span>
+            </div>
+          </div>
+          <div class="bookmark-thumb" style="background-image: url('https://www.google.com/s2/favicons?domain=platum.kr&sz=128');"></div>
+        </a>
+
+        <a class="bookmark" href="https://www.thisisgame.com/articles/423709" target="_blank" rel="noopener noreferrer">
+          <div class="bookmark-content">
+            <div class="bookmark-title">컬처코드, K-POP·서브컬처·애니메이션 팬덤 커머스 플랫폼 FNDM 출시 예고</div>
+            <div class="bookmark-desc">컬처코드가 K-POP, 서브컬처 IP, 애니메이션 등 팬덤 콘텐츠와 상품을 연결하는 글로벌 팬덤 커머스 플랫폼 FNDM을 선보인다.</div>
+            <div class="bookmark-url">
+              <img class="bookmark-favicon" src="https://www.google.com/s2/favicons?domain=thisisgame.com&sz=64" alt="" loading="lazy" />
+              <span class="bookmark-url-text">thisisgame.com/articles/423709</span>
+            </div>
+          </div>
+          <div class="bookmark-thumb" style="background-image: url('https://www.google.com/s2/favicons?domain=thisisgame.com&sz=128');"></div>
+        </a>
+      </div>
+    </div>
 
     <hr class="divider scroll-reveal" />
 
